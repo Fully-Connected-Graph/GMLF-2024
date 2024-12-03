@@ -1,2 +1,5 @@
 data
 notebooks
+.vscode
+.venv
+submission.csv
