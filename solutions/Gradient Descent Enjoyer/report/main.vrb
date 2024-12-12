@@ -1,0 +1,19 @@
+\frametitle{Meta Learning}
+\begin{itemize}
+    \item Implemented StackingRegressor with ElasticNet as meta-estimator
+    \item Combined predictions from base models for final output
+    \item Fine-tuned hyperparameters using Grid Search
+  \end{itemize}
+  \vspace{5pt}
+  \textbf{Code Snippet:}
+  \begin{lstlisting}
+# Optimize meta-estimator
+meta_estimator = ElasticNet(**best_params_meta)
+stacking_regressor = StackingRegressor(
+    estimators=estimators,
+    final_estimator=meta_estimator,
+    passthrough=True,
+    n_jobs=NUM_JOBS
+)
+stacking_regressor.fit(X, y)
+  \end{lstlisting}

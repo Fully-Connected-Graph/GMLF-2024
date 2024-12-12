@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.venv
+tsfresh_full_features.csv
+*.csv
+!data/**/*.csv
+final_dataframe.csv
+final_dataframe_submit.csv
+predictions/
+AutogluonModels/
+!notebooks/
+data/
+
+data.zip

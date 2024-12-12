@@ -1,0 +1,8 @@
+numpy
+pandas
+scikit-learn
+ipykernel
+ipywidgets
+ipython
+matplotlib
+autogluon==1.2b20241130

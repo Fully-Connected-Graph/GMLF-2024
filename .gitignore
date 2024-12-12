@@ -3,3 +3,7 @@ notebooks
 .vscode
 .venv
 submission.csv
+catboost_ino
+*.csv
+*.tsv
+.DS_Store

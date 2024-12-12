@@ -1,0 +1,130 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+
+\title{New Energy Building Power Prediction}
+\subtitle{Team: Gradient Descent Enjoyer}
+\author{Jeremias Ferrao}
+\date{\today}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  stringstyle=\color{orange},
+  commentstyle=\color{gray},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  tabsize=2,
+}
+
+\begin{document}
+
+% Introduction Slide
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% Data Exploration Slide
+\begin{frame}{Data Exploration}
+  \begin{itemize}
+    \item Explored the dataset containing HVAC energy consumption data
+    \item Identified key features influencing energy usage
+    \item Visualized data distributions and correlations
+  \end{itemize}
+  
+\end{frame}
+
+% Data Engineering Section
+\section{Data Engineering}
+
+% Dropping Irrelevant Features Slide
+\begin{frame}{Dropping Irrelevant Features}
+  \begin{itemize}
+    \item Removed features with low variance or high missing rates
+    \item Excluded redundant features based on correlation analysis
+    \item Reduced dimensionality to improve model performance
+  \end{itemize}
+\end{frame}
+
+% Processing Cyclic Features Slide
+\begin{frame}{Processing Cyclic Features}
+  \begin{itemize}
+    \item Time features like hour and month are cyclic
+    \item Applied sine and cosine transformations
+    \[
+    \text{sin\_hour} = \sin\left(2\pi \times \frac{\text{hour}}{24}\right)
+    \]
+    \[
+    \text{cos\_hour} = \cos\left(2\pi \times \frac{\text{hour}}{24}\right)
+    \]
+    \item Captured cyclical patterns in energy consumption
+  \end{itemize}
+\end{frame}
+
+% Dealing with Corrupt Data Slide
+\begin{frame}{Dealing with Corrupt Data}
+  \begin{itemize}
+    \item Identified missing and anomalous values
+    \item Imputed missing data using mean and interpolation
+    \item Removed outliers based on statistical thresholds
+  \end{itemize}
+\end{frame}
+
+% Model Training Section
+\section{Model Training}
+
+% Initial Approach Slide
+\begin{frame}{Initial Approach}
+  \begin{itemize}
+    \item Started with Linear Regression as baseline
+    \item Achieved MAE of initial model (e.g., 500 units)
+    \item Realized need for more complex models due to nonlinearity
+  \end{itemize}
+\end{frame}
+
+% Ensemble Slide
+\begin{frame}{Ensemble Methods}
+  \begin{itemize}
+    \item Utilized Random Forest and XGBoost regressors
+    \item Ensembles help in capturing diverse model strengths
+    \item Improved performance over individual models
+  \end{itemize}
+  
+\end{frame}
+
+% Meta Learning Slide
+\begin{frame}[fragile]{Meta Learning}
+  \begin{itemize}
+    \item Implemented StackingRegressor with ElasticNet as meta-estimator
+    \item Combined predictions from base models for final output
+    \item Fine-tuned hyperparameters using Grid Search
+  \end{itemize}
+  \vspace{5pt}
+  \textbf{Code Snippet:}
+  \begin{lstlisting}
+# Optimize meta-estimator
+meta_estimator = ElasticNet(**best_params_meta)
+stacking_regressor = StackingRegressor(
+    estimators=estimators,
+    final_estimator=meta_estimator,
+    passthrough=True,
+    n_jobs=NUM_JOBS
+)
+stacking_regressor.fit(X, y)
+  \end{lstlisting}
+\end{frame}
+
+% Feature Importance Slide
+\begin{frame}{Feature Importance}
+  \begin{itemize}
+    \item Extracted feature importances from ensemble models
+    \item Identified top contributing features to energy consumption
+  \end{itemize}
+\end{frame}
+
+\end{document}

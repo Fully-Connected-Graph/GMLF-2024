@@ -1,0 +1,14 @@
+{
+    "activation": "tanh",
+    "alpha": 0.01,
+    "early_stopping": true,
+    "hidden_layer_sizes": [
+        100,
+        100,
+        100,
+        100
+    ],
+    "learning_rate": "adaptive",
+    "max_iter": 2000,
+    "solver": "adam"
+}
